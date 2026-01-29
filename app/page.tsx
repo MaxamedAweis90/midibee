@@ -169,7 +169,7 @@ export default function Home() {
         <div className="flex items-center gap-4 opacity-80">
           {/* Next.js */}
           <a
-            href="https://nextjs.org"
+            href="https://nextjs  .org"
             target="_blank"
             rel="noopener noreferrer"
             title="Next.js"
