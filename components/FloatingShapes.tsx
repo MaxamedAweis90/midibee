@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -21,11 +21,16 @@ interface ShapeDef {
 }
 
 export default function FloatingShapes({ isDark }: FloatingShapesProps) {
-  const [shapes, setShapes] = useState<ShapeDef[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Generate random shapes on client side to avoid hydration mismatch
-    const newShapes: ShapeDef[] = Array.from({ length: 12 }).map((_, i) => ({
+    setMounted(true);
+  }, []);
+
+  const shapes = useMemo(() => {
+    if (!mounted) return [];
+
+    return Array.from({ length: 12 }).map((_, i) => ({
       id: i,
       type: ["circle", "square", "triangle"][
         Math.floor(Math.random() * 3)
@@ -35,8 +40,7 @@ export default function FloatingShapes({ isDark }: FloatingShapesProps) {
       initialY: Math.random() * 100, // percentage
       duration: Math.floor(Math.random() * 20) + 15, // 15-35s
     }));
-    setShapes(newShapes);
-  }, []);
+  }, [mounted]);
 
   const colorClass = isDark
     ? "bg-white/10 border-white/20"

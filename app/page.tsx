@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,6 +16,7 @@ export default function Home() {
   const [currentColor, setCurrentColor] =
     useState<ColorDefinition>(DEFAULT_COLOR);
   const [language, setLanguage] = useState<"EN" | "SO">("EN");
+  const [showAllTools, setShowAllTools] = useState(false);
 
   // Auto-rotate language every 7 seconds
   useEffect(() => {
@@ -92,7 +95,7 @@ export default function Home() {
           <TypewriterTitle
             text={titleText}
             className={twMerge(
-              "text-4xl font-bold tracking-tight sm:text-6xl",
+              "text-3xl font-bold tracking-tight sm:text-6xl",
               textColor,
             )}
           />
@@ -103,7 +106,7 @@ export default function Home() {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="w-full max-w-lg"
+          className="w-full max-w-lg px-4 sm:px-0"
         >
           <textarea
             value={inputValue}
@@ -111,7 +114,7 @@ export default function Home() {
             placeholder={language === "EN" ? "Type a color..." : "Qor midab..."}
             rows={1}
             className={twMerge(
-              "w-full resize-none rounded-2xl border p-6 text-center shadow-2xl backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all duration-300 font-mono text-2xl",
+              "w-full resize-none rounded-2xl border p-4 sm:p-6 text-center shadow-2xl backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all duration-300 font-mono text-xl sm:text-2xl",
               bgInput,
               borderColor,
               textColor,
@@ -125,13 +128,12 @@ export default function Home() {
         </motion.div>
       </main>
 
-      {/* Footer */}
       <motion.footer
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
         className={twMerge(
-          "z-10 flex w-full max-w-2xl flex-col items-center justify-between gap-4 rounded-2xl border p-4 backdrop-blur-md transition-all duration-300 sm:flex-row sm:px-8 mb-6 mt-auto", // Added mt-auto to push footer to bottom
+          "z-10 flex w-[calc(100%-2rem)] max-w-lg flex-row items-center justify-between gap-4 rounded-2xl border p-4 backdrop-blur-md transition-all duration-300 sm:w-full sm:px-8 mb-8 mt-auto",
           bgInput,
           borderColor,
           textColor,
@@ -139,118 +141,213 @@ export default function Home() {
       >
         {/* Developer Info */}
         <div className="flex items-center gap-3">
-          <a
+          <Link
             href="https://www.engaweis.space"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 transition-opacity hover:opacity-80"
           >
             <div className="relative h-10 w-10 overflow-hidden rounded-full border border-current">
-              {/* Assuming eng_aweis image is in public folder, if not showing fallback/alt */}
-              <img
+              <Image
                 src="/ugaas.png"
                 alt="eng_aweis"
-                className="h-full w-full object-cover"
-                onError={(e) => {
-                  // Fallback if image missing
-                  e.currentTarget.style.display = "none";
-                  e.currentTarget.parentElement?.classList.add("bg-current");
-                }}
+                fill
+                className="object-cover"
+                sizes="40px"
               />
             </div>
             <div className="flex flex-col text-left">
               <span className="font-bold text-sm leading-tight">eng_aweis</span>
               <span className="text-xs opacity-70">Full Stack Developer</span>
             </div>
-          </a>
+          </Link>
         </div>
 
-        {/* Tools Icons */}
-        <div className="flex items-center gap-4 opacity-80">
-          {/* Next.js */}
-          <a
-            href="https://nextjs  .org"
+        {/* Tools Icons - Unified Pill */}
+        <div className="flex items-center gap-4 px-5 py-2.5 rounded-2xl border border-black/10 bg-white/90 text-black backdrop-blur-md shadow-sm">
+          {/* Next.js (Always Visible) */}
+          <Link
+            href="https://nextjs.org"
             target="_blank"
             rel="noopener noreferrer"
             title="Next.js"
-            className="hover:scale-110 transition-transform"
+            className="hover:scale-110 transition-transform opacity-90 hover:opacity-100"
           >
             <svg
-              viewBox="0 0 180 180"
-              fill="currentColor"
+              viewBox="0 0 16 16"
+              fill="none"
               className="h-6 w-6"
               aria-label="Next.js"
+              strokeLinejoin="round"
             >
-              <mask
-                height="180"
-                id="mask0_408_134"
-                maskUnits="userSpaceOnUse"
-                width="180"
-                x="0"
-                y="0"
-              >
-                <circle cx="90" cy="90" fill="black" r="90" />
-              </mask>
-              <g mask="url(#mask0_408_134)">
+              <g clipPath="url(#clip0_53_108)">
                 <circle
-                  cx="90"
-                  cy="90"
-                  data-circle="true"
-                  fill="transparent"
-                  r="90"
-                  // stroke="currentColor"
-                  // strokeWidth="6" // Optional ring
+                  cx="8"
+                  cy="8"
+                  r="7.375"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
-                  d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
-                  fill="currentColor"
+                  d="M10.63 11V5"
+                  stroke="url(#paint0_linear_53_108vsxrmxu21)"
+                  strokeWidth="1.25"
+                  strokeMiterlimit="1.41421"
                 />
-                <rect
-                  fill="currentColor"
-                  height="72"
-                  width="12"
-                  x="115"
-                  y="54"
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M5.995 5.00087V5H4.745V11H5.995V6.96798L12.3615 14.7076C12.712 14.4793 13.0434 14.2242 13.353 13.9453L5.99527 5.00065L5.995 5.00087Z"
+                  fill="url(#paint1_linear_53_108vsxrmxu21)"
                 />
               </g>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_53_108vsxrmxu21"
+                  x1="11.13"
+                  y1="5"
+                  x2="11.13"
+                  y2="11"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="white" />
+                  <stop
+                    offset="0.609375"
+                    stopColor="white"
+                    stopOpacity="0.57"
+                  />
+                  <stop offset="0.796875" stopColor="white" stopOpacity="0" />
+                  <stop offset="1" stopColor="white" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient
+                  id="paint1_linear_53_108vsxrmxu21"
+                  x1="9.9375"
+                  y1="9.0625"
+                  x2="13.5574"
+                  y2="13.3992"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="white" />
+                  <stop offset="1" stopColor="white" stopOpacity="0" />
+                </linearGradient>
+                <clipPath id="clip0_53_108">
+                  <rect width="16" height="16" fill="white" />
+                </clipPath>
+              </defs>
             </svg>
-          </a>
+          </Link>
 
-          {/* Tailwind CSS */}
-          <a
-            href="https://tailwindcss.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Tailwind CSS"
-            className="hover:scale-110 transition-transform"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="h-6 w-6"
-              aria-label="Tailwind CSS"
+          {/* Desktop Tools (Hidden on Mobile) */}
+          <div className="hidden sm:flex items-center gap-4">
+            {/* Tailwind CSS */}
+            <a
+              href="https://tailwindcss.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Tailwind CSS"
+              className="hover:scale-110 transition-transform opacity-90 hover:opacity-100"
             >
-              <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
-            </svg>
-          </a>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-6 w-6"
+                aria-label="Tailwind CSS"
+              >
+                <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+              </svg>
+            </a>
 
-          {/* Framer Motion */}
-          <a
-            href="https://www.framer.com/motion/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Framer Motion"
-            className="hover:scale-110 transition-transform"
-          >
-            <svg
-              viewBox="0 0 14 21"
-              fill="currentColor"
-              className="h-6 w-auto" // Preserves aspect ratio
-              aria-label="Framer Motion"
+            {/* Framer Motion */}
+            <a
+              href="https://www.framer.com/motion/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Framer Motion"
+              className="hover:scale-110 transition-transform opacity-90 hover:opacity-100"
             >
-              <path d="M0 0h14v7H7L0 0zm0 7h7l7 7H7v7l-7-7V7z" />
-            </svg>
-          </a>
+              <svg
+                viewBox="0 0 14 21"
+                fill="currentColor"
+                className="h-6 w-auto" // Preserves aspect ratio
+                aria-label="Framer Motion"
+              >
+                <path d="M0 0h14v7H7L0 0zm0 7h7l7 7H7v7l-7-7V7z" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Mobile Tools (Popup) */}
+          <div className="relative sm:hidden">
+            {/* +2 Badge */}
+            <button
+              onClick={() => setShowAllTools((prev) => !prev)}
+              className={twMerge(
+                "flex h-8 w-8 items-center justify-center rounded-full border border-current text-xs font-bold transition-all hover:scale-105 active:scale-95",
+                isDark
+                  ? "bg-white text-black border-transparent"
+                  : "bg-black text-white border-transparent",
+              )}
+              title="Show more tools"
+            >
+              +2
+            </button>
+
+            {/* Popup */}
+            <AnimatePresence>
+              {showAllTools && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                  className={twMerge(
+                    "absolute bottom-full right-0 mb-3 flex items-center gap-4 rounded-xl border p-3 shadow-xl backdrop-blur-xl",
+                    bgInput,
+                    borderColor,
+                    textColor,
+                  )}
+                >
+                  {/* Tailwind CSS */}
+                  <a
+                    href="https://tailwindcss.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Tailwind CSS"
+                    className="hover:scale-110 transition-transform"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-6 w-6"
+                      aria-label="Tailwind CSS"
+                    >
+                      <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+                    </svg>
+                  </a>
+
+                  {/* Framer Motion */}
+                  <a
+                    href="https://www.framer.com/motion/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Framer Motion"
+                    className="hover:scale-110 transition-transform"
+                  >
+                    <svg
+                      viewBox="0 0 14 21"
+                      fill="currentColor"
+                      className="h-6 w-auto" // Preserves aspect ratio
+                      aria-label="Framer Motion"
+                    >
+                      <path d="M0 0h14v7H7L0 0zm0 7h7l7 7H7v7l-7-7V7z" />
+                    </svg>
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </motion.footer>
     </div>
