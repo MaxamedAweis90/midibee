@@ -23,17 +23,18 @@ export const COLOR_MAP: Record<string, ColorDefinition> = {
   madoo: { tailwindClass: "bg-black", hex: "#000000", isDark: true },
   madaw: { tailwindClass: "bg-black", hex: "#000000", isDark: true },
 
-  // Blue (Buluug)
+  // Blue (Buluug / Ciraad)
   buluug: { tailwindClass: "bg-blue-600", hex: "#2563eb", isDark: true },
   buluugga: { tailwindClass: "bg-blue-600", hex: "#2563eb", isDark: true },
-  // buluug a: { tailwindClass: 'bg-blue-600', hex: '#2563eb', isDark: true },
+  ciraad: { tailwindClass: "bg-blue-400", hex: "#60a5fa", isDark: true }, // Sky blue
+  cir: { tailwindClass: "bg-blue-400", hex: "#60a5fa", isDark: true }, // Sky blue
 
   // Green (Cagaar)
   cagaar: { tailwindClass: "bg-green-600", hex: "#16a34a", isDark: true },
   doog: { tailwindClass: "bg-green-600", hex: "#16a34a", isDark: true },
   cagaaran: { tailwindClass: "bg-green-600", hex: "#16a34a", isDark: true },
 
-  // Yellow (Huruud/Jaalle)
+  // Yellow (Jaale / Huruud)
   huruud: { tailwindClass: "bg-yellow-400", hex: "#facc15", isDark: false },
   jaalle: { tailwindClass: "bg-yellow-400", hex: "#facc15", isDark: false },
   jaale: { tailwindClass: "bg-yellow-400", hex: "#facc15", isDark: false },
@@ -45,23 +46,39 @@ export const COLOR_MAP: Record<string, ColorDefinition> = {
   cad: { tailwindClass: "bg-white", hex: "#ffffff", isDark: false },
   caddaan: { tailwindClass: "bg-white", hex: "#ffffff", isDark: false },
 
-  // Orange (Oranji)
+  // Orange (Oranji / Liini / Cusbur)
   oranje: { tailwindClass: "bg-orange-500", hex: "#f97316", isDark: true },
-  biliiliq: { tailwindClass: "bg-orange-500", hex: "#f97316", isDark: true }, // Sometimes used for orange/sparkle? Stick to oranji.
+  oranji: { tailwindClass: "bg-orange-500", hex: "#f97316", isDark: true },
+  liini: { tailwindClass: "bg-orange-500", hex: "#f97316", isDark: true },
+  cusbur: { tailwindClass: "bg-orange-500", hex: "#f97316", isDark: true },
+  biliiliq: { tailwindClass: "bg-orange-500", hex: "#f97316", isDark: true },
 
-  // Purple (Buni/Violet - approximation)
-  // Somali color naming is often less granular for purple/pink without loan words or specific context.
-  // Using generic "basal" (onion) for pink/purple range or loan words.
-  basal: { tailwindClass: "bg-pink-400", hex: "#f472b6", isDark: false }, // Pink
-  "guduud huruud": {
-    tailwindClass: "bg-orange-500",
-    hex: "#f97316",
-    isDark: true,
-  }, // Red-Yellow?
+  // Brown (Bunni / Qaxwe)
+  bunni: { tailwindClass: "bg-amber-800", hex: "#92400e", isDark: true },
+  qaxwe: { tailwindClass: "bg-amber-800", hex: "#92400e", isDark: true },
 
-  // Grey (Cawl)
-  cawl: { tailwindClass: "bg-gray-500", hex: "#6b7280", isDark: true },
-  dambas: { tailwindClass: "bg-gray-400", hex: "#9ca3af", isDark: false }, // Ash color
+  // Pink (Basali / Mushakal)
+  basal: { tailwindClass: "bg-pink-400", hex: "#f472b6", isDark: false },
+  basali: { tailwindClass: "bg-pink-400", hex: "#f472b6", isDark: false },
+  mushakal: { tailwindClass: "bg-pink-400", hex: "#f472b6", isDark: false },
+
+  // Purple (Carwaajis / Fiyool / Casuus)
+  carwaajis: { tailwindClass: "bg-purple-600", hex: "#9333ea", isDark: true },
+  fiyool: { tailwindClass: "bg-purple-600", hex: "#9333ea", isDark: true },
+  casuus: { tailwindClass: "bg-purple-600", hex: "#9333ea", isDark: true },
+
+  // Grey (Dameeri / Sibiri / Boor)
+  cawl: { tailwindClass: "bg-gray-500", hex: "#6b7280", isDark: true }, // Existing
+  dambas: { tailwindClass: "bg-gray-400", hex: "#9ca3af", isDark: false }, // Existing
+  dameeri: { tailwindClass: "bg-gray-500", hex: "#6b7280", isDark: true },
+  sibiri: { tailwindClass: "bg-gray-400", hex: "#9ca3af", isDark: false },
+  boor: { tailwindClass: "bg-gray-500", hex: "#6b7280", isDark: true },
+
+  // Gold (Dahab)
+  dahab: { tailwindClass: "bg-yellow-500", hex: "#eab308", isDark: false },
+
+  // Silver (Qalin)
+  qalin: { tailwindClass: "bg-gray-300", hex: "#d1d5db", isDark: false },
 };
 
 export function getColor(input: string): ColorDefinition | null {

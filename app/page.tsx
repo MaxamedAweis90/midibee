@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <div
       className={twMerge(
-        "relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden transition-colors duration-700 ease-in-out",
+        "relative flex min-h-screen w-full flex-col items-center overflow-hidden transition-colors duration-700 ease-in-out",
         currentColor.tailwindClass,
       )}
     >
@@ -86,7 +86,7 @@ export default function Home() {
         isDark={isDark}
       />
 
-      <main className="z-10 flex w-full max-w-4xl flex-col items-center gap-12 px-4 text-center">
+      <main className="z-10 flex flex-1 w-full max-w-4xl flex-col items-center justify-center gap-12 px-4 text-center">
         {/* Centered Heading */}
         <div className="space-y-4 min-h-[120px] flex items-center justify-center">
           <TypewriterTitle
@@ -120,12 +120,139 @@ export default function Home() {
             )}
             spellCheck={false}
             autoFocus
-            // Enforce lowercase visual if desired?
-            // Style: 'lowercase'
             style={{ textTransform: "lowercase" }}
           />
         </motion.div>
       </main>
+
+      {/* Footer */}
+      <motion.footer
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+        className={twMerge(
+          "z-10 flex w-full max-w-2xl flex-col items-center justify-between gap-4 rounded-2xl border p-4 backdrop-blur-md transition-all duration-300 sm:flex-row sm:px-8 mb-6 mt-auto", // Added mt-auto to push footer to bottom
+          bgInput,
+          borderColor,
+          textColor,
+        )}
+      >
+        {/* Developer Info */}
+        <div className="flex items-center gap-3">
+          <a
+            href="https://www.engaweis.space"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 transition-opacity hover:opacity-80"
+          >
+            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-current">
+              {/* Assuming eng_aweis image is in public folder, if not showing fallback/alt */}
+              <img
+                src="/ugaas.png"
+                alt="eng_aweis"
+                className="h-full w-full object-cover"
+                onError={(e) => {
+                  // Fallback if image missing
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.parentElement?.classList.add("bg-current");
+                }}
+              />
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="font-bold text-sm leading-tight">eng_aweis</span>
+              <span className="text-xs opacity-70">Full Stack Developer</span>
+            </div>
+          </a>
+        </div>
+
+        {/* Tools Icons */}
+        <div className="flex items-center gap-4 opacity-80">
+          {/* Next.js */}
+          <a
+            href="https://nextjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Next.js"
+            className="hover:scale-110 transition-transform"
+          >
+            <svg
+              viewBox="0 0 180 180"
+              fill="currentColor"
+              className="h-6 w-6"
+              aria-label="Next.js"
+            >
+              <mask
+                height="180"
+                id="mask0_408_134"
+                maskUnits="userSpaceOnUse"
+                width="180"
+                x="0"
+                y="0"
+              >
+                <circle cx="90" cy="90" fill="black" r="90" />
+              </mask>
+              <g mask="url(#mask0_408_134)">
+                <circle
+                  cx="90"
+                  cy="90"
+                  data-circle="true"
+                  fill="transparent"
+                  r="90"
+                  // stroke="currentColor"
+                  // strokeWidth="6" // Optional ring
+                />
+                <path
+                  d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
+                  fill="currentColor"
+                />
+                <rect
+                  fill="currentColor"
+                  height="72"
+                  width="12"
+                  x="115"
+                  y="54"
+                />
+              </g>
+            </svg>
+          </a>
+
+          {/* Tailwind CSS */}
+          <a
+            href="https://tailwindcss.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Tailwind CSS"
+            className="hover:scale-110 transition-transform"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-6 w-6"
+              aria-label="Tailwind CSS"
+            >
+              <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+            </svg>
+          </a>
+
+          {/* Framer Motion */}
+          <a
+            href="https://www.framer.com/motion/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Framer Motion"
+            className="hover:scale-110 transition-transform"
+          >
+            <svg
+              viewBox="0 0 14 21"
+              fill="currentColor"
+              className="h-6 w-auto" // Preserves aspect ratio
+              aria-label="Framer Motion"
+            >
+              <path d="M0 0h14v7H7L0 0zm0 7h7l7 7H7v7l-7-7V7z" />
+            </svg>
+          </a>
+        </div>
+      </motion.footer>
     </div>
   );
 }
